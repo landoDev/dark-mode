@@ -6,9 +6,11 @@ import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
 
 import "./styles.scss";
+import { DropDownFilter } from "./components/DropDownFilter";
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
+  
 
   useEffect(() => {
     axios
@@ -17,10 +19,11 @@ const App = () => {
       )
       .then(res => setCoinData(res.data))
       .catch(err => console.log(err));
-  }, []);
+  }, [])
   return (
     <div className="App">
       <Navbar />
+      <DropDownFilter coinData={coinData} />
       <Charts coinData={coinData} />
     </div>
   );
